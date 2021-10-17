@@ -9,6 +9,7 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CommentsComponent } from './components/post-detail/comments/comments.component';
+import { LoadingComponent } from './components/shared/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CommentsComponent } from './components/post-detail/comments/comments.co
     PostDetailComponent,
     NotFoundComponent,
     NavbarComponent,
-    CommentsComponent
+    CommentsComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,

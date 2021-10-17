@@ -10,11 +10,13 @@ import { JsonPostsService } from 'src/app/services/json-posts.service';
 export class PostListComponent implements OnInit {
 
   posts: any[] = [];
+  loading: boolean = true;
 
   constructor(private postsService: JsonPostsService,
               private router: Router ) {
     this.postsService.getPosts()
         .subscribe( (data: any) => {
+          this.loading = false;
           this.posts = data;
         })
    }
