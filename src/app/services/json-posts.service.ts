@@ -25,7 +25,7 @@ export class JsonPostsService {
     return this.getQuery(postQuery);
   }
 
-  getPostComments(id: string){
+  getPostComments(id: number){
     const commentsQuery = `posts/${id}/comments`;
     
     return this.getQuery(commentsQuery);

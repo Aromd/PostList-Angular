@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { JsonPostsService } from 'src/app/services/json-posts.service';
 
 @Component({
   selector: 'app-comments',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
+  @Input() postId!: number;
+  loading: boolean = true;
+  comments: any[] = [];
 
-  constructor() { }
+  constructor(private postService: JsonPostsService) {
+  }
 
   ngOnInit(): void {
+    this.postService.getPostComments(this.postId!)
+      .subscribe((data: any) => {
+        this.comments = data;
+        this.loading = false;
+      })
   }
 
 }

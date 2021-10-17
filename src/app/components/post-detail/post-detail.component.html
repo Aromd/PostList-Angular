@@ -5,5 +5,5 @@
         <h1>{{post.title}}</h1>
         <p class="mt-4">{{post.body}}</p>
     </div>
-    <app-comments></app-comments>
+    <app-comments [postId]="post.id"></app-comments>
 </article>
