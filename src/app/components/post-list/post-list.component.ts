@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { JsonPostsService } from 'src/app/services/json-posts.service';
 
 @Component({
   selector: 'app-post-list',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostListComponent implements OnInit {
 
-  constructor() { }
+  posts: any[] = [];
+
+  constructor(private postsService: JsonPostsService,
+              private router: Router ) {
+    this.postsService.getPosts()
+        .subscribe( (data: any) => {
+          this.posts = data;
+        })
+   }
 
   ngOnInit(): void {
+  }
+
+  verPost(id: number){
+    this.router.navigate(['/post', id]);
   }
 
 }
