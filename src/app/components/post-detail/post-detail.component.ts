@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JsonPostsService } from 'src/app/services/json-posts.service';
 
 @Component({
@@ -9,12 +9,14 @@ import { JsonPostsService } from 'src/app/services/json-posts.service';
 })
 export class PostDetailComponent implements OnInit {
 
-  post: any = {}
+  post: any = {};
+  loading: boolean = true;
 
-  constructor(private router: ActivatedRoute,
-    private postService: JsonPostsService) {
+  constructor(private routerActivated: ActivatedRoute,
+              private postService: JsonPostsService,
+              private router: Router) {
 
-      this.router.params.subscribe( params => {
+      this.routerActivated.params.subscribe( params => {
         this.getPost(params['id']);
       })
      }
@@ -27,7 +29,11 @@ export class PostDetailComponent implements OnInit {
     this.postService.getPostById(id)
         .subscribe(data => {
           this.post = data;
-        })
+          this.loading = false;
+        }, (err) => {
+          this.loading = false;
+          this.router.navigate(['/404']);
+        } )
   }
 
 }
