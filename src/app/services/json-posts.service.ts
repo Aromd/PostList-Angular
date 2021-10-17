@@ -19,7 +19,7 @@ export class JsonPostsService {
     return this.getQuery('posts');
   }
 
-  getPostById(id:string){
+  getPostById(id:number){
     const postQuery = `posts/${id}`;
 
     return this.getQuery(postQuery);
