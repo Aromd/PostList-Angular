@@ -1,0 +1,8 @@
+.nav__wrapper {
+    background-color: #2d333b;
+}
+
+.nav__container {
+    display: flex;
+    justify-content: center;
+}
