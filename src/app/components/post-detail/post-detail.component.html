@@ -1,9 +1,10 @@
 <app-loading *ngIf="loading"></app-loading>
 <article *ngIf="!loading" class="container animated fadeIn fast">
     <h3> Detalle del post: {{post.id}}</h3>
+    <h4 *ngIf="dateOfComment">Último comentario: {{dateOfComment | date:"short" }}</h4>
     <div class="mt-5">
         <h1>{{post.title}}</h1>
         <p class="mt-4">{{post.body}}</p>
     </div>
-    <app-comments [postId]="post.id"></app-comments>
+    <app-comments (commentDate)="setDateComment($event)" [postId]="post.id"></app-comments>
 </article>

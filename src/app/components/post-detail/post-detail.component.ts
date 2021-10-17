@@ -11,6 +11,7 @@ export class PostDetailComponent implements OnInit {
 
   post: any = {};
   loading: boolean = true;
+  dateOfComment?: Date;
 
   constructor(private routerActivated: ActivatedRoute,
               private postService: JsonPostsService,
@@ -34,6 +35,10 @@ export class PostDetailComponent implements OnInit {
           this.loading = false;
           this.router.navigate(['/404']);
         } )
+  }
+
+  setDateComment(date: Date){
+    this.dateOfComment = date;
   }
 
 }
