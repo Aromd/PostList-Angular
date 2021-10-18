@@ -1,0 +1,7 @@
+input,
+input:focus,
+textarea,
+textarea:focus {
+    color: white;
+    background-color: #2d333b;
+}

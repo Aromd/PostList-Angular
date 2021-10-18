@@ -1,20 +1,35 @@
 <div class="container my-5 border border-light bg-dark">
     <h4 class="text-center my-4">Nuevo comentario</h4>
-    <form (ngSubmit)="createComment(formulario)" #formulario="ngForm">
-        <span *ngIf="formulario.submitted && formulario.controls['name'].errors" class="text-danger animated fadeIn fast">El nombre es obligatorio</span>
+    <form autocomplete="off" [formGroup]="forma" (ngSubmit)="guardar()">
+        <span class="text-danger animated fadeIn fast" *ngIf="nombreNoValido">El nombre es obligatorio</span>
+
         <div class="mb-3">
-            <input type="text" name="name" [(ngModel)]="comment.name" class="form-control mb-4" placeholder="Nombre" minlength="2" required>
+            <input type="text" class="form-control mb-4" placeholder="Nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido">
         </div>
-        <span *ngIf="formulario.submitted && formulario.controls['email'].errors" class="text-danger animated fadeIn fast">El email es obligatorio</span>
+
+        <span *ngIf="emailNoValido" class="text-danger animated fadeIn fast">El email es obligatorio</span>
         <div class="mb-3">
-            <input type="email" name="email" [(ngModel)]="comment.email" class="form-control mb-4" placeholder="Email" email required>
+            <input type="email" class="form-control mb-4" placeholder="Email" formControlName="email" [class.is-invalid]="emailNoValido">
         </div>
-        <span *ngIf="formulario.submitted && formulario.controls['body'].errors" class="text-danger animated fadeIn fast">Introduce un comentario entre 2 y 500 caracteres</span>
+
+        <span *ngIf="comentarioNoValido" class="text-danger animated fadeIn fast">El comentario debe tener entre 2 y 500 caracteres</span>
         <div class="mb-3">
-            <textarea class="form-control mb-4" name="body" [(ngModel)]="comment.body" rows=" 3 " placeholder="Escribí tu comentario" minlength="2" required maxlength="500"></textarea>
+            <textarea class="form-control mb-4" rows="3" placeholder="Escribí tu comentario" formControlName="comentario" [class.is-invalid]="comentarioNoValido"></textarea>
         </div>
+
         <div class="text-center d-grid gap-2 col-2 mx-auto ">
             <button type="submit " class="btn btn-light mb-4 ">Submit</button>
         </div>
     </form>
 </div>
+
+<hr>
+<pre>
+    Estado del Formulario: {{ forma.valid }}
+    <br>
+    Status: {{forma.status}}
+</pre>
+
+<pre>
+{{forma.value | json}}
+</pre>
