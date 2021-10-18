@@ -43,6 +43,12 @@ export class JsonPostsService {
     this.guardarListaStorage();
   }
 
+  borrarComentario(id: number){
+    const comentariosPurgados = this.comentarios.filter( comentario => comentario.id !== id);
+    this.comentarios = comentariosPurgados;
+    this.guardarListaStorage();
+  }
+
   guardarListaStorage(){
     localStorage.setItem('data', JSON.stringify(this.comentarios));
   }

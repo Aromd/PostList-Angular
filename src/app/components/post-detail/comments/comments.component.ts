@@ -36,7 +36,20 @@ export class CommentsComponent implements OnInit {
 
   nuevosComentarios(){
       const nuevosComentarios = this.postService.obtenerListaDeComentarios(this.postId);
-      this.comments.push(...nuevosComentarios);
+      nuevosComentarios.forEach(comentario => {
+        const alreadyInArray = this.comments.find( comment => comment.id === comentario.id );
+        if ( !alreadyInArray ){
+          this.comments.push(comentario);
+        } else {
+          return
+        }
+      })
+  }
+
+  eliminarComentario(id: number){
+    const comentariosPurgados = this.comments.filter( comentario => comentario.id !== id);
+    this.comments = comentariosPurgados;
+    this.postService.borrarComentario(id);
   }
 
 }

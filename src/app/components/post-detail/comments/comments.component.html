@@ -7,13 +7,15 @@
         <div class="card-body animated fadeIn fast" *ngIf="!loading">
             <div class="card__comment" *ngFor="let comment of comments">
                 <h5 class="card-title mt-4">{{comment.name}}</h5>
-                <p class="card-text mt-3">{{comment.body}}</p>
+                <div class="card__body">
+                    <p class="card-text mt-3">{{comment.body}}</p>
+                    <button (click)="eliminarComentario(comment.id)" *ngIf="comment.isNew" class="btn btn-dark"><i class="far fa-trash-alt"></i></button>
+                </div>
             </div>
             <div class="text-center d-grid gap-2 col-2 mx-auto">
                 <button class="btn btn-light btn-lg mt-5" (click)="setCommentDate()">Emitir</button>
             </div>
         </div>
     </div>
-    <!-- <app-comments-form [postId]="postId"></app-comments-form> -->
-    <app-comments-form [postId]="postId"></app-comments-form>
+    <app-comments-form [postId]="postId" (actualizarComments)="nuevosComentarios()"></app-comments-form>
 </section>

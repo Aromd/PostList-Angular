@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { CommentModel } from 'src/app/models/comment.model';
 import { JsonPostsService } from 'src/app/services/json-posts.service';
@@ -9,6 +9,7 @@ import { JsonPostsService } from 'src/app/services/json-posts.service';
   styleUrls: ['./comments-form.component.css']
 })
 export class CommentsFormComponent implements OnInit {
+  @Output() actualizarComments: EventEmitter<any>;
   @Input() postId!: number;
   forma!: FormGroup;
 
@@ -16,7 +17,7 @@ export class CommentsFormComponent implements OnInit {
               private postService : JsonPostsService) {
 
     this.crearFormulario();
-
+    this.actualizarComments = new EventEmitter();
   }
 
   ngOnInit(): void {
@@ -52,5 +53,6 @@ export class CommentsFormComponent implements OnInit {
     // posteo de informacion
     this.postService.crearComentario(this.forma.value, this.postId);
     this.forma.reset();
+    this.actualizarComments.emit();
   }
 }

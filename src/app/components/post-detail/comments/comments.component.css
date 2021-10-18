@@ -7,3 +7,12 @@
     border-bottom: 2px solid;
     border-color: white;
 }
+
+.card__body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card__body i {
+    font-size: 20px;
+}
