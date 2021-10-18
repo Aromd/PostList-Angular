@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { CommentModel } from 'src/app/models/comment.model';
+import { CommentsServiceService } from 'src/app/services/comments-service.service';
 
 @Component({
   selector: 'app-comments-form',
@@ -8,10 +9,11 @@ import { CommentModel } from 'src/app/models/comment.model';
   styleUrls: ['./comments-form.component.css']
 })
 export class CommentsFormComponent implements OnInit {
-
+  @Input() postId!: number;
   forma!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private commentsService : CommentsServiceService) {
 
     this.crearFormulario();
 
@@ -46,8 +48,8 @@ export class CommentsFormComponent implements OnInit {
         control.markAllAsTouched();
       });
     }
-
     // posteo de informacion
+    this.commentsService.crearComentario(this.forma.value, this.postId);
     this.forma.reset();
   }
 }
