@@ -8,6 +8,8 @@ import { CommentModel } from '../models/comment.model';
 })
 export class JsonPostsService {
 
+  comentarios: CommentModel[] = [];
+
   constructor(private http: HttpClient) { }
 
   getQuery(query:string){
@@ -32,7 +34,10 @@ export class JsonPostsService {
     return this.getQuery(commentsQuery);
   }
 
-  crearComentario(comentario: CommentModel, postId: number){
-
+  crearComentario(comentario: any, postId: number){
+    const nuevoComentario = new CommentModel(postId, comentario.nombre, comentario.email, comentario.comentario, true);
+    this.comentarios.push(nuevoComentario);
   }
+
+  
 }

@@ -9,7 +9,7 @@ import { JsonPostsService } from 'src/app/services/json-posts.service';
   styleUrls: ['./comments-form.component.css']
 })
 export class CommentsFormComponent implements OnInit {
-
+  @Input() postId!: number;
   forma!: FormGroup;
 
   constructor(private fb: FormBuilder,
