@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CommentModel } from '../models/comment.model';
 
 
 @Injectable({
@@ -31,5 +32,7 @@ export class JsonPostsService {
     return this.getQuery(commentsQuery);
   }
 
+  crearComentario(comentario: CommentModel, postId: number){
 
+  }
 }

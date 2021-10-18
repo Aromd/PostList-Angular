@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { CommentModel } from 'src/app/models/comment.model';
+import { JsonPostsService } from 'src/app/services/json-posts.service';
 
 @Component({
   selector: 'app-comments-form',
@@ -11,7 +12,8 @@ export class CommentsFormComponent implements OnInit {
 
   forma!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private postService : JsonPostsService) {
 
     this.crearFormulario();
 
@@ -48,6 +50,7 @@ export class CommentsFormComponent implements OnInit {
     }
 
     // posteo de informacion
+    this.postService.crearComentario(this.forma.value, this.postId);
     this.forma.reset();
   }
 }
