@@ -10,6 +10,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CommentsComponent } from './components/post-detail/comments/comments.component';
 import { LoadingComponent } from './components/shared/loading/loading.component';
+import { CommentsFormComponent } from './components/post-detail/comments-form/comments-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import { LoadingComponent } from './components/shared/loading/loading.component'
     NotFoundComponent,
     NavbarComponent,
     CommentsComponent,
-    LoadingComponent
+    LoadingComponent,
+    CommentsFormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

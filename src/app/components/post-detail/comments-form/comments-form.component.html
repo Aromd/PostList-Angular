@@ -1,0 +1,20 @@
+<div class="container my-5 border border-light bg-dark">
+    <h4 class="text-center my-4">Nuevo comentario</h4>
+    <form (ngSubmit)="createComment(formulario)" #formulario="ngForm">
+        <span *ngIf="formulario.submitted && formulario.controls['name'].errors" class="text-danger animated fadeIn fast">El nombre es obligatorio</span>
+        <div class="mb-3">
+            <input type="text" name="name" [(ngModel)]="comment.name" class="form-control mb-4" placeholder="Nombre" minlength="2" required>
+        </div>
+        <span *ngIf="formulario.submitted && formulario.controls['email'].errors" class="text-danger animated fadeIn fast">El email es obligatorio</span>
+        <div class="mb-3">
+            <input type="email" name="email" [(ngModel)]="comment.email" class="form-control mb-4" placeholder="Email" email required>
+        </div>
+        <span *ngIf="formulario.submitted && formulario.controls['body'].errors" class="text-danger animated fadeIn fast">Introduce un comentario entre 2 y 500 caracteres</span>
+        <div class="mb-3">
+            <textarea class="form-control mb-4" name="body" [(ngModel)]="comment.body" rows=" 3 " placeholder="Escribí tu comentario" minlength="2" required maxlength="500"></textarea>
+        </div>
+        <div class="text-center d-grid gap-2 col-2 mx-auto ">
+            <button type="submit " class="btn btn-light mb-4 ">Submit</button>
+        </div>
+    </form>
+</div>
