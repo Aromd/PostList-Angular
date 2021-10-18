@@ -50,14 +50,17 @@ export class JsonPostsService {
   obtenerListaStorage(){
     if (localStorage.getItem('data')){
       this.comentarios = JSON.parse(localStorage.getItem('data')!);
+    } else {
+      this.comentarios = []
     }
   }
 
   obtenerListaDeComentarios(postId?: number){
+    this.obtenerListaStorage();
     if(postId){
-      return this.comentarios;
+      return this.comentarios.filter( comentario => comentario['postId'] === postId);
     } else {
-      return this.comentarios.filter( comentario => comentario.postId === postId);
+      return this.comentarios;
     }
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { CommentModel } from 'src/app/models/comment.model';
 import { JsonPostsService } from 'src/app/services/json-posts.service';
 
 @Component({
@@ -11,11 +12,12 @@ export class CommentsComponent implements OnInit {
   @Output() commentDate:  EventEmitter<Date>;
   dateOfComment: Date;
   loading: boolean = true;
-  comments: any[] = [];
+  comments: CommentModel[] = [];
 
   constructor(private postService: JsonPostsService) {
     this.commentDate = new EventEmitter();
     this.dateOfComment = new Date();
+    this.nuevosComentarios();
   }
 
   ngOnInit(): void {
@@ -23,12 +25,18 @@ export class CommentsComponent implements OnInit {
       .subscribe((data: any) => {
         this.comments = data;
         this.loading = false;
+        this.nuevosComentarios();
       })
   }
 
   setCommentDate(){
     this.dateOfComment = new Date();
     this.commentDate.emit(this.dateOfComment);
+  }
+
+  nuevosComentarios(){
+      const nuevosComentarios = this.postService.obtenerListaDeComentarios(this.postId);
+      this.comments.push(...nuevosComentarios);
   }
 
 }
