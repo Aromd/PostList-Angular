@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Post } from 'src/app/models/post.model';
 import { JsonPostsService } from 'src/app/services/json-posts.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { JsonPostsService } from 'src/app/services/json-posts.service';
 })
 export class PostDetailComponent implements OnInit {
 
-  post: any = {};
+  post!: Post;
   loading: boolean = true;
   dateOfComment?: Date;
 
@@ -28,7 +29,7 @@ export class PostDetailComponent implements OnInit {
   getPost(id: number) {
 
     this.postService.getPostById(id)
-        .subscribe(data => {
+        .subscribe((data: Post) => {
           this.post = data;
           this.loading = false;
         }, (err) => {

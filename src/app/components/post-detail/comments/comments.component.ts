@@ -22,7 +22,7 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getPostComments(this.postId!)
-      .subscribe((data: any) => {
+      .subscribe((data: CommentModel[]) => {
         this.comments = data;
         this.loading = false;
         this.nuevosComentarios();
