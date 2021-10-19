@@ -12,7 +12,7 @@ export class CommentsFormComponent implements OnInit {
   @Output() actualizarComments: EventEmitter<void>;
   @Input() postId!: number;
   forma!: FormGroup;
-  regExPattern :string = "^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)$";
+  regExPattern :string = "[a-zA-Z0-9!#$%&'/=?^_`{|}~+-]([.]?[a-zA-Z0-9!#$%&'/=?^_`{|}~+-])+@[a-zA-Z0-9]([^@&%$/()=?¿!.,:;]|\d)+[a-zA-Z0-9][.][a-zA-Z]{2,4}([.][a-zA-Z]{2})?";
 
   constructor(private fb: FormBuilder,
               private postService : JsonPostsService) {
