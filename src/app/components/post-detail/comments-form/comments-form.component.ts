@@ -9,7 +9,7 @@ import { JsonPostsService } from 'src/app/services/json-posts.service';
   styleUrls: ['./comments-form.component.css']
 })
 export class CommentsFormComponent implements OnInit {
-  @Output() actualizarComments: EventEmitter<any>;
+  @Output() actualizarComments: EventEmitter<void>;
   @Input() postId!: number;
   forma!: FormGroup;
 
