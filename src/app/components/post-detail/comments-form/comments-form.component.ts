@@ -12,6 +12,7 @@ export class CommentsFormComponent implements OnInit {
   @Output() actualizarComments: EventEmitter<void>;
   @Input() postId!: number;
   forma!: FormGroup;
+  regExPattern :string = "^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)$";
 
   constructor(private fb: FormBuilder,
               private postService : JsonPostsService) {
@@ -38,7 +39,7 @@ export class CommentsFormComponent implements OnInit {
   crearFormulario(){
       this.forma = this.fb.group({
         nombre: ['', [Validators.required, Validators.minLength(2)]],
-        email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+        email: ['', [Validators.required, Validators.pattern(this.regExPattern)]],
         comentario: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(500)]]
       });
   }
